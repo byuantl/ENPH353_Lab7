@@ -55,7 +55,7 @@ class Gazebo_Linefollow_Env(gazebo_env.GazeboEnv):
 
         # cv2.imshow("raw", cv_image)
 
-        NUM_BINS = 3
+        NUM_BINS = 10
         state = np.zeros(NUM_BINS)
         done = False
 
@@ -118,8 +118,6 @@ class Gazebo_Linefollow_Env(gazebo_env.GazeboEnv):
         return [seed]
 
     def step(self, action):
-        # time.sleep(5)
-
         rospy.wait_for_service('/gazebo/unpause_physics')
         try:
             self.unpause()
@@ -141,6 +139,8 @@ class Gazebo_Linefollow_Env(gazebo_env.GazeboEnv):
             vel_cmd.angular.z = -0.5
 
         self.vel_pub.publish(vel_cmd)
+
+        rospy.sleep(0.001)
 
         data = None
         while data is None:
