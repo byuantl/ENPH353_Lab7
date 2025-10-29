@@ -118,7 +118,7 @@ class Gazebo_Linefollow_Env(gazebo_env.GazeboEnv):
         return [seed]
 
     def step(self, action):
-        time.sleep(5)
+        # time.sleep(5)
 
         rospy.wait_for_service('/gazebo/unpause_physics')
         try:
